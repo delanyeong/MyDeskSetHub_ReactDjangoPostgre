@@ -2,6 +2,11 @@ from rest_framework import serializers
 from .models import *
 
 class UserPostSerializer(serializers.ModelSerializer):
+    user_username = serializers.SerializerMethodField();
+    
+    def get_user_username(self, obj):
+        return obj.user.username
+    
     class Meta:
         model = UserPost
         fields = '__all__'

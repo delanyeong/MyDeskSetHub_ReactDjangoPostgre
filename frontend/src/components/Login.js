@@ -119,44 +119,70 @@ function Login() {
 
 
   return (
-    <div name='home' className='relative w-full h-screen bg-zinc-900/60'>
-        
-        <img className='absolute w-full h-full object-cover mix-blend-overlay' src={setup1Img} alt="" />
-
-        <div className='flex justify-center items-center h-full'>
-            <form onSubmit={FormSubmit} className='max-w-[400px] w-full mx-auto bg-white p-8'>
-                
-                <h2 className='text-4xl font-bold text-center py-6 text-black'>MyDeskSetHub.</h2>
-
-                <div className='flex flex-col py-2'>
-                    <label>Username</label>
-                    <input className='border relative bg-gray-100 p-2' 
-                    type="text"
-                    value={state.usernameValue} 
-                    onChange = {(e)=> dispatch({ type: 'catchUsernameChange', usernameChosen: e.target.value})} />
+    
+    <div class="bg-no-repeat bg-cover bg-center relative bg-setup-image">
+      <div class="absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0"></div>
+      <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
+          <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
+            <div class="self-start hidden lg:flex flex-col  text-white">
+              <img src="" class="mb-3" />
+              <h1 class="mb-3 font-bold text-5xl">Hi 👋 Welcome to MDSH </h1>
+              <p class="pr-3">Lorem ipsum is placeholder text commonly used in the graphic, print,
+                and publishing industries for previewing layouts and visual mockups</p>
+            </div>
+          </div>
+          <div class="flex justify-center self-center  z-10">
+            <div class="p-12 bg-white mx-auto rounded-2xl w-100 ">
+                <div class="mb-4">
+                  <h3 class="font-semibold text-2xl text-gray-800">Sign In </h3>
+                  <p class="text-gray-500">Please sign in to your account.</p>
                 </div>
-
-                <div className='flex flex-col py-2'>
-                    <label>Password</label>
-                    <input className='border relative bg-gray-100 p-2' 
-                    type="password"
-                    value={state.passwordValue} 
-                    onChange = {(e)=> dispatch({ type: 'catchPasswordChange', passwordChosen: e.target.value})} />
+                <form onSubmit={FormSubmit}>
+                <div class="space-y-5">
+                            <div class="space-y-2">
+                                  <label class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
+                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="" placeholder="Enter your username"
+                  value={state.usernameValue} 
+                  onChange = {(e)=> dispatch({ type: 'catchUsernameChange', usernameChosen: e.target.value})} />
+                  </div>
+                              <div class="space-y-2">
+                  <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+                    Password
+                  </label>
+                  <input class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" placeholder="Enter your password"
+                  type="password"
+                  value={state.passwordValue} 
+                  onChange = {(e)=> dispatch({ type: 'catchPasswordChange', passwordChosen: e.target.value})}/>
                 </div>
-
-                <button className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white relative'>Sign In</button>
-
-                <div className='flex justify-between relative'>
-                  <p className='flex items-center text-black'>
-                    <input className='mr-2' type="checkbox" />
-                    Remember Me
-                  </p>
-                  <p onClick={() => navigate('/register')} className="cursor-pointer text-indigo-600 underline">
-                    Create an account
-                  </p>
+                  <div class="flex items-center justify-between">
+                  <div class="flex items-center">
+                    <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded"/>
+                    <label for="remember_me" class="ml-2 block text-sm text-gray-800">
+                      Remember me
+                    </label>
+                  </div>
+                  <div class="text-sm">
+                    <p href="#" class="text-green-400 hover:text-green-500"
+                    onClick={() => navigate('/register')}>
+                      Create an account
+                    </p>
+                  </div>
                 </div>
-            </form>
-        </div>
+                <div>
+                  <button type="submit" class="w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500">
+                    Sign in
+                  </button>
+                </div>
+                </div>
+                </form>
+                <div class="pt-5 text-center text-gray-400 text-xs">
+                  <span>
+                    Copyright © 2021-2022
+                    <p href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" class="text-green hover:text-green-500 ">AJI</p></span>
+                </div>
+            </div>
+          </div>
+      </div>
     </div>
   )
 }

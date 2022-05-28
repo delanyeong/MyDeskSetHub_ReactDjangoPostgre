@@ -12,7 +12,9 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Register from './components/Register';
 import AddPost from "./pages/AddPost";
-
+import Login from "./components/Login";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 function App() {
 
   
@@ -68,12 +70,15 @@ function App() {
     <div>
       <StateContext.Provider value={state}>
         <DispatchContext.Provider value={dispatch}>
+          <Header />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/addpost" element={<AddPost />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
+          <Footer />
         </DispatchContext.Provider>
       </StateContext.Provider>
     </div>
