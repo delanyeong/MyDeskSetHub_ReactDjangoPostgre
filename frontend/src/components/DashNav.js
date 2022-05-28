@@ -35,6 +35,7 @@ function DashNav() {
           <div className="btn btn-ghost normal-case text-xl">Welcome to MyDeskSetHub!</div>
         </div>
         <div className="flex-none gap-2">
+          <button class="btn btn-sm btn-primary" onClick={()=> navigate("/addpost")}>Add Post</button>
           <div className="form-control">
             <input
               type="text"

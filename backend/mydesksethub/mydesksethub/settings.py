@@ -87,12 +87,7 @@ WSGI_APPLICATION = 'mydesksethub.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': '',
-        'USER' : '',
-        'PASSWORD' : '',
-        'HOST' : '',
-        'PORT': ''
+        
     }
 }
 

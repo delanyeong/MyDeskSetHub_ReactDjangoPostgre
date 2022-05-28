@@ -1,13 +1,17 @@
+//REACT AND STUFF
 import React, { useEffect } from "react"
 import { Routes, Route } from "react-router-dom";
 import { useImmerReducer } from "use-immer";
+
+//CONTEXTS
 import DispatchContext from "./Context/DispatchContext";
 import StateContext from "./Context/StateContext";
 
-
+//COMPONENTS
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Register from './components/Register';
+import AddPost from "./pages/AddPost";
 
 function App() {
 
@@ -67,6 +71,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/addpost" element={<AddPost />} />
               <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
         </DispatchContext.Provider>
