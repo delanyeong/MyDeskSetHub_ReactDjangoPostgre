@@ -20,6 +20,9 @@ function AddPost() {
     imageValue: "",
     uploadedImages: [],
     sendRequest: 0,
+    userProfile: {
+      occupationName: '',
+    }
   };
 
   function ReducerFunction(draft, action) {
@@ -60,6 +63,10 @@ function AddPost() {
         draft.sendRequest = draft.sendRequest + 1;
         break;
 
+      case "catchUserProfileInfo":
+        draft.userProfile.occupationName = action.profileObject.occupation
+        break
+
       default:
         break;
     }
@@ -75,6 +82,20 @@ function AddPost() {
       });
     }
   }, [state.uploadedImages[0]]);
+
+  //request to get profile info
+  useEffect(()=>{
+    async function getProfileInfo() {
+      try {
+        const response = await Axios.get(`api/profiles/${globalState.userId}/`)
+        console.log(response.data)
+        dispatch({ type: 'catchUserProfileInfo', profileObject: response.data})
+      } catch (e) {
+        console.log(e.response)
+      }
+    }
+    getProfileInfo()
+  }, [])
 
   function FormSubmit(e) {
     e.preventDefault();
@@ -108,6 +129,33 @@ function AddPost() {
       addPost();
     }
   }, [state.sendRequest]);
+
+  function SubmitButtonDisplay() {
+    if(globalState.userIsLogged && state.userProfile.occupationName !== null 
+      && state.userProfile.occupationName !== '') {
+        return (
+          <p>
+            Submit
+          </p>
+        )
+      }
+      else if (globalState.userIsLogged && (
+        state.userProfile.occupationName === null || state.userProfile.occupationName === ''
+      )) {
+        return (
+          <p onClick={()=> navigate('/profile')}>
+            complete your profile to start posting
+          </p>
+        )
+      }
+      else if (!globalState.userIsLogged){
+        return (
+          <p onClick={()=> navigate('/login')}>
+            Sign in to start posting
+          </p>
+        )
+      }
+  }
 
   return (
     <div class="container items-center px-5 py-12 lg:px-20">
@@ -265,7 +313,7 @@ function AddPost() {
         <div class="flex items-center w-full pt-4 mb-4">
           <button onClick={() => console.log(state.uploadedImages)} class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 ">
             {" "}
-            Button{" "}
+            {SubmitButtonDisplay()}
           </button>
         </div>
         <hr class="my-4 border-gray-200" />

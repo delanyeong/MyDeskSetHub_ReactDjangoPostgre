@@ -45,7 +45,7 @@ function PostFeedCard() {
                     {posts.title}
                   </dt>
                   <dt className="text-xs font-light border border-gray-200 p-1 rounded-lg text-gray-500 truncate">
-                    by {posts.username}
+                    by @{posts.user_username}
                   </dt>
                 </div>
                 <dd>
