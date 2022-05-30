@@ -137,7 +137,9 @@ function Profile() {
 
   return (
     <div>
-      <div class="bg-white dark:bg-gray-800 px-8">
+      <div>
+        <form onSubmit={FormSubmit}>
+          <div class="bg-white dark:bg-gray-800 px-8">
             <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
               <div class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800">
                 <div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
@@ -158,15 +160,6 @@ function Profile() {
                   </div>
                 </div>
               </div>
-              </div>
-              </div>
-
-
-      <div>
-        <form onSubmit={FormSubmit}>
-          <div class="bg-white dark:bg-gray-800 px-8">
-            <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
-              
               <div class="mx-auto">
                 <div class="xl:w-9/12 w-11/12 mx-auto xl:mx-0">
                   <div class="rounded relative mt-8 h-48">
