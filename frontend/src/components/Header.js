@@ -5,11 +5,15 @@ import DispatchContext from "../Context/DispatchContext";
 import { useNavigate } from 'react-router-dom'
 
 
-function DashNav() {
+function Header() {
   const navigate = useNavigate()
 
   const globalState = useContext(StateContext)
   const globalDispatch =useContext(DispatchContext)
+
+  function handleProfile() {
+    navigate('/profile')
+  }
 
   async function handleLogout () {
     const confirmLogout = window.confirm("Are you sure you want to logout?")
@@ -56,7 +60,7 @@ function DashNav() {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <div className="justify-between">
+                <div className="justify-between" onClick={handleProfile}>
                   Profile
                   <span className="badge">New</span>
                 </div>
@@ -75,4 +79,4 @@ function DashNav() {
   );
 }
 
-export default DashNav;
+export default Header;

@@ -14,5 +14,7 @@ urlpatterns = [
     path('posts/create/', mydesksethub_api_views.UserPostCreate.as_view()),
     path('profiles/', mydesksethubusers_api_views.ProfileList.as_view()),
     path('profiles/<uuid:user>/', mydesksethubusers_api_views.ProfileDetail.as_view()),
+    path('profiles/<uuid:user>/update/', mydesksethubusers_api_views.ProfileUpdate.as_view()),
+
 
 ]

@@ -18,7 +18,7 @@ function AddPost() {
     linkValue: "",
     priceValue: "",
     imageValue: "",
-    uploadedImages: [],
+    uploadedImage1: [],
     sendRequest: 0,
     userProfile: {
       occupationName: '',
@@ -55,8 +55,8 @@ function AddPost() {
         draft.imageValue = action.imageChosen;
         break;
 
-      case "catchUploadedImages":
-        draft.uploadedImages = action.imagesChosen;
+      case "catchUploadedImage1":
+        draft.uploadedImage1 = action.imagesChosen1;
         break;
 
       case "changeSendRequest":
@@ -75,13 +75,13 @@ function AddPost() {
   const [state, dispatch] = useImmerReducer(ReducerFunction, initialState);
 
   useEffect(() => {
-    if (state.uploadedImages[0]) {
+    if (state.uploadedImage1[0]) {
       dispatch({
         type: "catchImageChange",
-        imageChosen: state.uploadedImages[0],
+        imageChosen: state.uploadedImage1[0],
       });
     }
-  }, [state.uploadedImages[0]]);
+  }, [state.uploadedImage1[0]]);
 
   //request to get profile info
   useEffect(()=>{
@@ -179,8 +179,8 @@ function AddPost() {
               accept="image/png, image/gif, image/jpeg"
               onChange={(e) =>
                 dispatch({
-                  type: "catchUploadedImages",
-                  imagesChosen: e.target.files,
+                  type: "catchUploadedImage1",
+                  imagesChosen1: e.target.files,
                 })
               }
             />
@@ -311,7 +311,7 @@ function AddPost() {
           </label>
         </div>
         <div class="flex items-center w-full pt-4 mb-4">
-          <button onClick={() => console.log(state.uploadedImages)} class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 ">
+          <button onClick={() => console.log(state.uploadedImage1)} class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 ">
             {" "}
             {SubmitButtonDisplay()}
           </button>
