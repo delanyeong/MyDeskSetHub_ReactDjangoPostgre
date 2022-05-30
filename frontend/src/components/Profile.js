@@ -7,79 +7,85 @@ import { useImmerReducer } from "use-immer";
 import StateContext from "../Context/StateContext";
 
 function Profile() {
-    const navigate = useNavigate();
-    const globalState = useContext(StateContext);
+  const navigate = useNavigate();
+  const globalState = useContext(StateContext);
 
+  const initialState = {
+    userProfile: {
+      occupationName: "",
+      profilePic: "",
+      bio: "",
+    },
+    occupationNameValue: "",
+    bioValue: "",
+    uploadedImage2: [],
+    profilePictureValue: "",
+    sendRequest: 0,
+  };
 
-    const initialState = {
-        
-        userProfile: {
-          occupationName: '',
-        },
-        occupationNameValue: '',
-        bioValue:'',
-        uploadedImage2: [],
-        profilePictureValue: '',
-        sendRequest: 0,
+  function ReducerFunction(draft, action) {
+    switch (action.type) {
+      case "catchUserProfileInfo":
+        draft.userProfile.occupationName = action.profileObject.occupation;
+        draft.userProfile.profilePic = action.profileObject.profile_picture;
+        draft.userProfile.bio = action.profileObject.bio;
+        break;
 
-      };
-    
-      function ReducerFunction(draft, action) {
-        switch (action.type) {
-             
-          case "catchUserProfileInfo":
-            draft.userProfile.occupationName = action.profileObject.occupation
-            break
+      case "catchOccupationNameChange":
+        draft.occupationNameValue = action.occupationNameChosen;
+        break;
 
-          case 'catchOccupationNameChange':
-            draft.occupationNameValue = action.occupationNameChosen
-            break;
+      case "catchBioChange":
+        draft.bioValue = action.bioChosen;
+        break;
 
-          case 'catchBioChange':
-            draft.bioValue = action.bioChosen
-            break;
+      case "catchUploadedImage2":
+        draft.uploadedImage2 = action.image2Chosen;
+        break;
 
-          case 'catchUploadedImage2':
-            draft.uploadedImage2 = action.image2Chosen
-            break;
+      case "catchProfilePictureChange":
+        draft.profilePictureValue = action.profilePictureChosen;
+        break;
 
-          case 'catchProfilePictureChange':
-            draft.profilePictureValue = action.profilePictureChosen
-            break;
+      case "changeSendRequest":
+        draft.sendRequest = draft.sendRequest + 1;
+        break;
 
-          case 'changeSendRequest':
-            draft.sendRequest = draft.sendRequest + 1
-            break;
-    
-          default:
-            break;
-        }
-      }
-    
-      const [state, dispatch] = useImmerReducer(ReducerFunction, initialState);
-
-// Use effect to catch uploaded image 2
-useEffect(()=> {
-  if (state.uploadedImage2[0]) {
-    dispatch({type: 'catchProfilePictureChange', profilePictureChosen: state.uploadedImage2[0]})
+      default:
+        break;
+    }
   }
-},[state.uploadedImage2[0]])
 
-        //request to get profile info
-  useEffect(()=>{
+  const [state, dispatch] = useImmerReducer(ReducerFunction, initialState);
+
+  // Use effect to catch uploaded image 2
+  useEffect(() => {
+    if (state.uploadedImage2[0]) {
+      dispatch({
+        type: "catchProfilePictureChange",
+        profilePictureChosen: state.uploadedImage2[0],
+      });
+    }
+  }, [state.uploadedImage2[0]]);
+
+  //request to get profile info
+  useEffect(() => {
     async function getProfileInfo() {
       try {
-        const response = await Axios.get(`api/profiles/${globalState.userId}/`)
-        console.log(response.data)
-        dispatch({ type: 'catchUserProfileInfo', profileObject: response.data})
+        const response = await Axios.get(`api/profiles/${globalState.userId}/`);
+        console.log(response.data);
+        dispatch({
+          type: "catchUserProfileInfo",
+          profileObject: response.data,
+        });
       } catch (e) {
-        console.log(e.response)
+        console.log(e.response);
       }
     }
-    getProfileInfo()
-  }, [])
+    getProfileInfo();
+  }, []);
 
-//use effect to send the request
+  //use effect to send the request
   useEffect(() => {
     if (state.sendRequest) {
       async function updateProfile() {
@@ -89,16 +95,13 @@ useEffect(()=> {
         formData.append("profile_picture", state.profilePictureValue);
         formData.append("user", globalState.userId);
 
-
-
-        
         try {
           const response = await Axios.patch(
             `api/profiles/${globalState.userId}/update/`,
             formData
           );
           console.log(response.data);
-          navigate('/dashboard')
+          navigate("/dashboard");
         } catch (e) {
           console.log(e.response);
         }
@@ -107,30 +110,38 @@ useEffect(()=> {
     }
   }, [state.sendRequest]);
 
-  function FormSubmit(e){
-    e.preventDefault()
-    dispatch({type: 'changeSendRequest',})
+  function FormSubmit(e) {
+    e.preventDefault();
+    dispatch({ type: "changeSendRequest" });
   }
 
-
+  function welcomeDisplay() {
+    if (
+      state.userProfile.occupationName === null ||
+      state.userProfile.occupationName === ""
+    ) {
+      return (
+        <p class="text-lg text-gray-800 dark:text-gray-100 font-bold">
+          Welcome, {globalState.userUsername}. Please update your profile
+        </p>
+      );
+    } else {
+      return (
+        <p class="text-lg text-gray-800 dark:text-gray-100 font-bold">
+          {globalState.userUsername}'s Profile.
+          X items listed
+        </p>
+      );
+    }
+  }
 
   return (
     <div>
-      <div>
-        Welcome{" "}
-        <span className="text-green-500 ">{globalState.userUsername}</span>,
-        please submit this form below to update your profile
-      </div>
-
-      <div>
-        <form onSubmit={FormSubmit}>
-          <div class="bg-white dark:bg-gray-800 px-8">
+      <div class="bg-white dark:bg-gray-800 px-8">
             <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
               <div class="xl:w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800">
                 <div class="flex w-11/12 mx-auto xl:w-full xl:mx-0 items-center">
-                  <p class="text-lg text-gray-800 dark:text-gray-100 font-bold">
-                    My Profile
-                  </p>
+                  {welcomeDisplay()}
                   <div class="ml-2 cursor-pointer text-gray-600 dark:text-gray-400">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -147,6 +158,15 @@ useEffect(()=> {
                   </div>
                 </div>
               </div>
+              </div>
+              </div>
+
+
+      <div>
+        <form onSubmit={FormSubmit}>
+          <div class="bg-white dark:bg-gray-800 px-8">
+            <div class="container mx-auto bg-white dark:bg-gray-800 rounded">
+              
               <div class="mx-auto">
                 <div class="xl:w-9/12 w-11/12 mx-auto xl:mx-0">
                   <div class="rounded relative mt-8 h-48">
@@ -159,7 +179,7 @@ useEffect(()=> {
                     <div class="flex items-center px-3 py-2 rounded absolute right-0 mr-4 mt-4 cursor-pointer">
                       <p class="text-xs text-gray-100">
                         {/* {state.image2Value ? <li>Uploaded {state.image2Value.name}. Save to update</li> : "Change Cover Photo"} */}
-                        </p>
+                      </p>
                       <div class="ml-2 text-gray-100">
                         {/* <button> */}
                         <svg
@@ -193,31 +213,49 @@ useEffect(()=> {
                     </div>
                     <div class="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow flex items-center justify-center">
                       <img
-                        src="https://cdn.tuk.dev/assets/webapp/forms/form_layouts/form2.jpg"
+                        src={state.userProfile.profilePic}
                         alt=""
                         class="absolute z-0 h-full w-full object-cover rounded-full shadow top-0 left-0 bottom-0 right-0"
                       />
                       <div class="absolute bg-black opacity-50 top-0 right-0 bottom-0 left-0 rounded-full z-0"></div>
                       <div class="flex flex-col justify-center items-center z-10 text-gray-100">
-                      
-                          <input 
-                        id="files" class="hidden"
-                        type="file"
-                        accept="image/png, image/gif, image/jpeg"                     
-                        onChange={(e) =>
-                          dispatch({
-                            type: "catchUploadedImage2",
-                            image2Chosen: e.target.files,
-                          })
-                        } />
-                        <label className="cursor-pointer" for="files"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                <path stroke="none" d="M0 0h24v24H0z" />
-                                                <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
-                                                <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
-                                                <line x1="16" y1="5" x2="19" y2="8" />
-                                            </svg></label>
-                        
-                        <p class="text-xs text-gray-100">{state.profilePictureValue ? `Press "Save"` : "Edit Picture"}</p>
+                        <input
+                          id="files"
+                          class="hidden"
+                          type="file"
+                          accept="image/png, image/gif, image/jpeg"
+                          onChange={(e) =>
+                            dispatch({
+                              type: "catchUploadedImage2",
+                              image2Chosen: e.target.files,
+                            })
+                          }
+                        />
+                        <label className="cursor-pointer" for="files">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="icon icon-tabler icon-tabler-edit"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" />
+                            <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />
+                            <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                            <line x1="16" y1="5" x2="19" y2="8" />
+                          </svg>
+                        </label>
+
+                        <p class="text-xs text-gray-100">
+                          {state.profilePictureValue
+                            ? `Ready to Save!`
+                            : "Edit Picture"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -278,15 +316,12 @@ useEffect(()=> {
             <div class="container mx-auto w-11/12 xl:w-full">
               <div class="w-full py-4 sm:px-0 bg-white dark:bg-gray-800 flex justify-end">
                 <button
-                  role="button"
-                  aria-label="cancel form"
+                  onClick={() => navigate("/dashboard")}
                   class="bg-gray-200 focus:outline-none transition duration-150 ease-in-out hover:bg-gray-300 dark:bg-gray-700 rounded text-indigo-600 dark:text-indigo-600 px-6 py-2 text-xs mr-4 focus:ring-2 focus:ring-offset-2 focus:ring-gray-700"
                 >
                   Cancel
                 </button>
                 <button
-                  role="button"
-                  aria-label="Save form"
                   class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 bg-indigo-700 focus:outline-none transition duration-150 ease-in-out hover:bg-indigo-600 rounded text-white px-8 py-2 text-sm"
                   type="submit"
                 >
@@ -301,4 +336,4 @@ useEffect(()=> {
   );
 }
 
-export default Profile
+export default Profile;
