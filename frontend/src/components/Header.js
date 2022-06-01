@@ -25,7 +25,8 @@ function Header() {
         );
         console.log(response)
         globalDispatch({type: 'logout'})
-        navigate('/')
+        navigate('/login')
+        navigate(0)
       } catch (e) {
         console.log(e.response)
       }
@@ -36,7 +37,7 @@ function Header() {
     <div>
       <div className="navbar bg-base-100">
         <div className="flex-1">
-          <div className="btn btn-ghost normal-case text-xl">Welcome to MyDeskSetHub!</div>
+          <div onClick={()=> navigate("/dashboard")} className="btn btn-ghost normal-case text-xl">Welcome to MyDeskSetHub!</div>
         </div>
         <div className="flex-none gap-2">
           <button class="btn btn-sm btn-primary" onClick={()=> navigate("/addpost")}>Add Post</button>
