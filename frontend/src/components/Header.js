@@ -66,7 +66,7 @@ function Header() {
                 </div>
               </li>
               <li>
-                <div>Settings</div>
+                <div onClick={()=>navigate("/following")}>Friends</div>
               </li>
               <li>
                 <div onClick={handleLogout}>Logout</div>

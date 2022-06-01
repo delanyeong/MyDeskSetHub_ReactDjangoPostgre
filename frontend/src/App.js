@@ -16,6 +16,7 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
+import Following from "./components/Following";
 
 function App() {
 
@@ -80,6 +81,7 @@ function App() {
               <Route path="/addpost" element={<AddPost />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/following" element={<Following />} />
             </Routes>
           <Footer />
         </DispatchContext.Provider>
