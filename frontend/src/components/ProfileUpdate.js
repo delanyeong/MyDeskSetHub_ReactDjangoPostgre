@@ -6,6 +6,8 @@ import { useImmerReducer } from "use-immer";
 
 import StateContext from "../Context/StateContext";
 
+import defaultProfilePic from '../assets/logo.png'
+
 function ProfileUpdate(props) {
   const navigate = useNavigate();
   const globalState = useContext(StateContext);
@@ -69,10 +71,19 @@ function ProfileUpdate(props) {
     if (state.sendRequest) {
       async function updateProfile() {
         const formData = new FormData();
-        formData.append("occupation", state.occupationNameValue);
+
+        if (typeof state.profilePictureValue === "string" || state.profilePictureValue === null) {
+          formData.append("occupation", state.occupationNameValue);
+        formData.append("bio", state.bioValue);
+        formData.append("user", globalState.userId);
+        } else {
+          formData.append("occupation", state.occupationNameValue);
         formData.append("bio", state.bioValue);
         formData.append("profile_picture", state.profilePictureValue);
         formData.append("user", globalState.userId);
+        }
+        
+        
 
         try {
           const response = await Axios.patch(
@@ -80,7 +91,7 @@ function ProfileUpdate(props) {
             formData
           );
           console.log(response.data);
-          navigate("/profile");
+          navigate(0);
         } catch (e) {
           console.log(e.response);
         }

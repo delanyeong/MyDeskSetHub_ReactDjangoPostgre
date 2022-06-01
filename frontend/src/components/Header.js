@@ -9,7 +9,7 @@ function Header() {
   const navigate = useNavigate()
 
   const globalState = useContext(StateContext)
-  const globalDispatch =useContext(DispatchContext)
+  const globalDispatch = useContext(DispatchContext)
 
   function handleProfile() {
     navigate('/profile')
@@ -52,7 +52,7 @@ function Header() {
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://api.lorem.space/image/face?hash=33791" alt="" />
+                <img src={"https://api.lorem.space/image/face?hash=33791"} alt="" />
               </div>
             </label>
             <ul
