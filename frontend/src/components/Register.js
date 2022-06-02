@@ -50,6 +50,7 @@ function Register() {
     e.preventDefault();
     console.log("the form has been submitted");
     dispatch({ type : 'changeSendRequest' });
+    // navigate('/login')
   }
   useEffect(() => {
     if (state.sendRequest) {
@@ -67,7 +68,7 @@ function Register() {
             { cancelToken: source.token }
           );
           console.log(response);
-          navigate('/dashboard')
+          // navigate('/dashboard')
         } catch (error) {
           console.log(error.response);
         }
@@ -85,7 +86,7 @@ function Register() {
       <div class="min-h-screen sm:flex sm:flex-row mx-0 justify-center">
           <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
             <div class="self-start hidden lg:flex flex-col  text-white">
-              <img src="" class="mb-3" />
+              <img src="" class="mb-3" alt=""/>
               <h1 class="mb-3 font-bold text-5xl">Hi 👋 Welcome to MDSH </h1>
               <p class="pr-3">Lorem ipsum is placeholder text commonly used in the graphic, print,
                 and publishing industries for previewing layouts and visual mockups</p>
@@ -101,27 +102,27 @@ function Register() {
                 <div class="space-y-5">
                             <div class="space-y-2">
                                   <label class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
-                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="" placeholder="Enter your username"
+                  <input type="text" class="w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" placeholder="Enter your username"
                   value={state.usernameValue} 
                   onChange = {(e)=> dispatch({ type: 'catchUsernameChange', usernameChosen: e.target.value})} />
                   </div>
                             <div class="space-y-2">
-                                  <label class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
-                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="" placeholder="Enter your username"
+                                  <label class="text-sm font-medium text-gray-700 tracking-wide">Email</label>
+                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" placeholder="Enter your username"
                   type="text"
                   value={state.emailValue}
                   onChange = {(e)=> dispatch({ type: 'catchEmailChange', emailChosen: e.target.value})} />
                   </div>
                             <div class="space-y-2">
-                                  <label class="text-sm font-medium text-gray-700 tracking-wide">Username</label>
-                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" type="" placeholder="Enter your username"
+                                  <label class="text-sm font-medium text-gray-700 tracking-wide">Password</label>
+                  <input class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" placeholder="Enter your username"
                   type="password"
                   value={state.passwordValue}
                   onChange = {(e)=> dispatch({ type: 'catchPasswordChange', passwordChosen: e.target.value})} />
                   </div>
                               <div class="space-y-2">
                   <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-                    Password
+                    Re-type Password
                   </label>
                   <input class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400" placeholder="Enter your password"
                   type="password"

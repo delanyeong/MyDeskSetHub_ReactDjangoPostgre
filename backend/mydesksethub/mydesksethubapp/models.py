@@ -1,4 +1,4 @@
-from cgitb import text
+# from cgitb import text
 from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -20,13 +20,13 @@ class UserPost(models.Model):
     def __str__(self):
         return self.name
     
-class PostComment(models.Model):
-    id = models.AutoField(primary_key=True, editable=False)
+# class PostComment(models.Model):
+#     id = models.AutoField(primary_key=True, editable=False)
         
-    post = models.ForeignKey('UserPost', on_delete=models.CASCADE, null=True)
+#     post = models.ForeignKey('UserPost', on_delete=models.CASCADE, null=True)
         
-    text = models.CharField(blank=True, max_length=200, null=True)
-    rating = models.IntegerField(blank=True, null=True, default=0)
+#     text = models.CharField(blank=True, max_length=200, null=True)
+#     rating = models.IntegerField(blank=True, null=True, default=0)
         
-    def __str__(self):
-        return self.text
+#     def __str__(self):
+#         return self.text

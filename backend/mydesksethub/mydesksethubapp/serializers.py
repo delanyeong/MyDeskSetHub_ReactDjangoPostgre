@@ -11,13 +11,13 @@ class UserPostSerializer(serializers.ModelSerializer):
         model = UserPost
         fields = '__all__'
         
-# class UserPostCreateSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserPost
-#         fields = '__all__'
-        
-class PostCommentSerializer(serializers.ModelSerializer):
+class UserPostCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PostComment
+        model = UserPost
         fields = '__all__'
+        
+# class PostCommentSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PostComment
+#         fields = '__all__'
 

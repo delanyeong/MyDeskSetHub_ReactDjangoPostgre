@@ -30,10 +30,16 @@ from rest_framework import generics
 #     serializer = UserPostCreateSerializer(createPost, many=False)
 #     return Response(serializer.data)
 
+#
+
 class UserPostList(generics.ListAPIView):
     queryset = UserPost.objects.all()
     serializer_class = UserPostSerializer
     
 class UserPostCreate(generics.CreateAPIView):
+    queryset = UserPost.objects.all()
+    serializer_class = UserPostSerializer
+    
+class UserPostDelete(generics.DestroyAPIView):
     queryset = UserPost.objects.all()
     serializer_class = UserPostSerializer

@@ -17,6 +17,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Following from "./components/Following";
+import FollowingDetail from "./components/FollowingDetail";
 
 function App() {
 
@@ -81,7 +82,8 @@ function App() {
               <Route path="/addpost" element={<AddPost />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/following" element={<Following />} />
+              <Route exact path="/following" element={<Following />} />
+              <Route path="/following/:uuid" element={<FollowingDetail />} />
             </Routes>
           <Footer />
         </DispatchContext.Provider>

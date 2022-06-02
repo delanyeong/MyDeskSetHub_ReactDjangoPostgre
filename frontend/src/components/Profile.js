@@ -16,6 +16,7 @@ function Profile() {
       occupationName: "",
       profilePic: "",
       bio: "",
+      userUserposts: [],
     },
     dataIsLoading: true,
   };
@@ -26,6 +27,7 @@ function Profile() {
         draft.userProfile.occupationName = action.profileObject.occupation;
         draft.userProfile.profilePic = action.profileObject.profile_picture;
         draft.userProfile.bio = action.profileObject.bio;
+        draft.userProfile.userUserposts = action.profileObject.user_userposts;
         break;
 
       case "loadingDone":
@@ -81,7 +83,7 @@ function Profile() {
       return (
         <div>
           <p class="text-lg text-gray-800 dark:text-gray-100 font-bold">
-            {globalState.userUsername}'s Profile. X items listed
+            {globalState.userUsername}'s Profile. You have {state.userProfile.userUserposts.length} posts
           </p>
 
           {/* <div class="w-20 h-20 rounded-full bg-cover bg-center bg-no-repeat absolute bottom-0 -mb-10 ml-12 shadow flex items-center justify-center">

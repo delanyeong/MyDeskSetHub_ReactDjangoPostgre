@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'mydesksethub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_mydesksethub3',
+        'NAME': 'plswork',
         'USER' : 'postgres',
         'PASSWORD' : 'delan123',
         'HOST' : '127.0.0.1',
@@ -157,5 +157,6 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'USER_CREATE_PASSWORD_RETYPE' : True,
-    'SEND_ACTIVATION_EMAIL' : False
-}
+    'SEND_ACTIVATION_EMAIL' : False,
+    }
+
