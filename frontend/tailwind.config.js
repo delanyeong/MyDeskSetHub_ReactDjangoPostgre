@@ -5,7 +5,8 @@ module.exports = {
   theme: {
       backgroundImage: {
         'setup-image': "url('/src/assets/setup3.avif')",
-        'setup-image2': "url('/src/assets/setup2.jpg')",
+        'setup-image2': "url('/src/assets/setup4.jpg')",
+        'profile': "url('/src/assets/CAPTURE.PNG')",
       },
     screens: {
       sm: '640px',

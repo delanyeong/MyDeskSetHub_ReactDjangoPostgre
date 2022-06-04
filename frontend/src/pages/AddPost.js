@@ -150,7 +150,7 @@ function AddPost() {
       }
       else if (!globalState.userIsLogged){
         return (
-          <p onClick={()=> navigate('/login')}>
+          <p onClick={()=> navigate('/')}>
             Sign in to start posting
           </p>
         )
@@ -195,7 +195,7 @@ function AddPost() {
             type="text"
             id="name"
             name="Name"
-            placeholder="name"
+            placeholder="Title"
             class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
             value={state.nameValue}
             onChange={(e) =>
@@ -267,7 +267,7 @@ function AddPost() {
 
         <div class="relative pt-4">
             <label for="name" class="text-base leading-7 text-blueGray-500">Price</label>
-            <input id="date" name="date" placeholder="Link" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
+            <input id="date" name="date" placeholder="Price" class="w-full px-4 py-2 mt-2 mr-4 text-base text-black transition duration-500 ease-in-out transform rounded-lg bg-gray-100 focus:border-blueGray-500 focus:bg-white focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2"
             type="number"
             value={state.priceValue}
               onChange={(e) =>
@@ -290,7 +290,7 @@ function AddPost() {
               class="w-full h-32 px-4 py-2 mt-2 text-base text-blueGray-500 transition duration-500 ease-in-out transform bg-white border rounded-lg focus:border-blue-500 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 apearance-none autoexpand"
               id="description"
               name="description"
-              placeholder="Message..."
+              placeholder="Tell us more..."
               required=""
               type="text"
               value={state.descriptionValue}
@@ -304,19 +304,19 @@ function AddPost() {
           </div>
         </div>
 
-        <div class="flex">
+        {/* <div class="flex">
           <label class="flex items-center">
             <input type="checkbox" class="form-checkbox " />
             <span class="ml-2 text-blueGray-500">checkbox </span>
           </label>
-        </div>
+        </div> */}
         <div class="flex items-center w-full pt-4 mb-4">
           <button onClick={() => console.log(state.uploadedImage1)} class="w-full py-3 text-base text-white transition duration-500 ease-in-out transform bg-blue-600 border-blue-600 rounded-md focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2 hover:bg-blue-800 ">
             {" "}
             {SubmitButtonDisplay()}
           </button>
         </div>
-        <hr class="my-4 border-gray-200" />
+        {/* <hr class="my-4 border-gray-200" />
         <span class="px-4 py-1 mx-auto -mt-8 text-xs text-black transition duration-500 ease-in-out transform bg-gray-200 rounded-lg">
           Or continue with{" "}
         </span>
@@ -372,7 +372,7 @@ function AddPost() {
               <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z"></path>
             </svg>
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

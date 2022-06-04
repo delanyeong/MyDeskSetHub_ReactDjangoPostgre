@@ -40,6 +40,12 @@ class UserPostCreate(generics.CreateAPIView):
     queryset = UserPost.objects.all()
     serializer_class = UserPostSerializer
     
+class UserPostDetail(generics.RetrieveAPIView):
+    queryset = UserPost.objects.all()
+    serializer_class = UserPostSerializer
+    lookup_field = 'id'
+    
 class UserPostDelete(generics.DestroyAPIView):
     queryset = UserPost.objects.all()
     serializer_class = UserPostSerializer
+    lookup_field = 'id'

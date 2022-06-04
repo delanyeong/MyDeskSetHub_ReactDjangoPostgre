@@ -126,9 +126,8 @@ function Login() {
           <div class="flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10">
             <div class="self-start hidden lg:flex flex-col  text-white">
               <img src="" class="mb-3" />
-              <h1 class="mb-3 font-bold text-5xl">Hi 👋 Welcome to MDSH </h1>
-              <p class="pr-3">Lorem ipsum is placeholder text commonly used in the graphic, print,
-                and publishing industries for previewing layouts and visual mockups</p>
+              <h1 class="mb-3 font-bold text-5xl">Hi 👋 Welcome to MDSH. </h1>
+              <p class="pr-3">MyDeskSetHub | Your one stop hub for your Dream Desk Setup.</p>
             </div>
           </div>
           <div class="flex justify-center self-center  z-10">
@@ -177,8 +176,8 @@ function Login() {
                 </form>
                 <div class="pt-5 text-center text-gray-400 text-xs">
                   <span>
-                    Copyright © 2021-2022
-                    <p href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" class="text-green hover:text-green-500 ">AJI</p></span>
+                    
+                    <p href="https://codepen.io/uidesignhub" rel="" target="_blank" title="Ajimon" class="text-green hover:text-green-500 "></p></span>
                 </div>
             </div>
           </div>

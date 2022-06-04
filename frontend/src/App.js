@@ -76,8 +76,8 @@ function App() {
         <DispatchContext.Provider value={dispatch}>
           <Header />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/" element={<Home />} /> */}
+              <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/addpost" element={<AddPost />} />
               <Route path="/profile" element={<Profile />} />
