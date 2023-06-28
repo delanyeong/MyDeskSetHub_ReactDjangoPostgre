@@ -1,2 +1,2 @@
-# Unit 4 Project : App with any Tech Stack
+# Unit 4 Project - Tech stack of choice (ReactJS + Django + PostgreSQL)
 General Assembly Software Engineering Immersive Bootcamp
